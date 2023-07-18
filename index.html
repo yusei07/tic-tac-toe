@@ -5,19 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="container">
+      <div class="option">
+        <div class="restart">Restart</div>
+      </div>
       <header>
         <h1 class="title">Tic-Tac-Toe!</h1>
-        <p class="subtext"><span class="player-name">Player 1</span>, make your move.</p>
+        <p id="text-info" class="subtext blink-anim">Click to Start!</p>
       </header>
       <main>
         <div class="gameboard">
           <div class="squares"></div>
         </div>
       </main>
+      <footer>Made w <span><img src="assets/heart-icon.png" alt="heart-icon"></span> by <a href="">Yusei</a>.</footer>
     </div>
   </body>
 </html>
