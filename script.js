@@ -39,16 +39,17 @@ const playerFactory = (name, mark) => {
   };
 }
 
-// display message (iife)
-const displayMessage = (() => {
-  const subText = document.querySelector("#");
+// display message module (iife)
+const displayController = (() => {
+  const textInfo = document.querySelector("#text-info");
 
   const renderMessage = (message) => {
-   subText.innerHTML = message;
+   textInfo.innerHTML = message;
   }
 
   return {
-    renderMessage,
+    textInfo,
+    renderMessage
   }
 })();
 
@@ -92,15 +93,17 @@ const Game = (() => {
 
     if (checkWin(GameBoard.getGameBoard(), players[currentPlayerIndex].mark)) {
       gameOver = true;
-      alert(`${players[currentPlayerIndex].name} won!`)
+      displayController.renderMessage(`${players[currentPlayerIndex].name} won!`)
+      displayController.textInfo.classList.remove('blink-anim');
     } else if (checkTie(GameBoard.getGameBoard())) {
       gameOver = true;
-      alert("It's a tie!");
+      displayController.renderMessage("It's a tie!")
+      displayController.textInfo.classList.remove('blink-anim');
     } else {
       // switch player's turn
       currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
       displayPlayerTurn = `<span class="player-name">${players[currentPlayerIndex].name}</span>, make your move.`
-      document.querySelector("#switch-player").innerHTML = displayPlayerTurn;
+      displayController.renderMessage(displayPlayerTurn);
     }
   }
 
@@ -112,7 +115,8 @@ const Game = (() => {
     GameBoard.render();
     gameOver = false;
     // clear the message innerhtml
-    displayMessage.renderMessage = "";
+    displayController.renderMessage("Click to Start!");
+    displayController.textInfo.classList.add("blink-anim");
   }
 
   return { 
@@ -121,6 +125,7 @@ const Game = (() => {
     restart
   }
 })();
+
 
 // global variable
 const squares = document.querySelectorAll(".squares");
